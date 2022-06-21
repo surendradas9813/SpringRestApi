@@ -15,4 +15,6 @@ public interface StudentService {
 	public Student updateStudent(Student student);
 	
 	public void deleteCourse(long studentId);
+	
+	public void softDeleteCourse(long studentId);
 }

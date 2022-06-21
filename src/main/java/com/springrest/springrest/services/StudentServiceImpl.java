@@ -2,6 +2,7 @@ package com.springrest.springrest.services;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getStudents() {
-		return studentDao.findAll();
+		List<Student> result =  studentDao.findAll();
+		
+		return result.stream().filter(p->p.getActive()==true).collect(Collectors.toList());
+		
 	}
 
 	@SuppressWarnings("deprecation")
@@ -51,5 +55,14 @@ public class StudentServiceImpl implements StudentService {
 		Student entity = studentDao.getById(studentId);
 		studentDao.delete(entity);
 	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void softDeleteCourse(long studentId) {
+		Student entity = studentDao.getById(studentId);
+		entity.setActive(false);
+		studentDao.save(entity);
+	}
+	
 
 }

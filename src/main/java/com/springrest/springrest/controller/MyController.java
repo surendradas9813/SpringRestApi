@@ -62,5 +62,16 @@ public class MyController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@DeleteMapping("/students/soft/{studentId}")
+	public ResponseEntity<HttpStatus> softDeleteCourse(@PathVariable String studentId){
+		try {
+			this.studentService.softDeleteCourse(Long.parseLong(studentId));
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		catch(Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }

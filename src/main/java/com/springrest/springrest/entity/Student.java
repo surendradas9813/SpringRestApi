@@ -1,25 +1,30 @@
 package com.springrest.springrest.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Student {
-	
+
 	@Id
-	 public long id;
+	public long id;
+	@Column(name="firstName")
 	public String firstName;
+	@Column(name="lastName")
 	public String lastName;
 	public String branch;
-
-	public Student(long id, String firstName, String lastName, String branch) {
+	public Boolean active;
+	
+	public Student(long id, String firstName, String lastName, String branch, boolean active) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.branch = branch;
+		this.active = active;
 	}
-	
+
 	public Student() {
 		
 	}
@@ -56,4 +61,13 @@ public class Student {
 		this.branch = branch;
 	}
 
+	public boolean getActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	
 }
